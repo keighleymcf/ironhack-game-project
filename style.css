@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center; /*not centering when main.js is sourced*/
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1507275016429-544fc0875edd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1349&q=80");
+  background-size: cover; /*not covering?!*/
+  background-position: center;
+}
+
+.landing div {
+  width: 50%;
+  margin: 50px;
+}
+
+#start-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  height: 80px;
+  width: 200px;
+  font-size: 2rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+#start-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+#start-btn:active {
+  animation-name: start-btn-click;
+  animation-duration: 200ms;
+}
+
+#start-btn:active:after {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 200ms;
+}
+
+.disclaimer {
+  justify-self: flex-end;
+}
+
+@keyframes start-btn-click {
+  100% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
