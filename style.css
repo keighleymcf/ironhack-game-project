@@ -1,16 +1,17 @@
 /*
-colors
+colors in constanst.js
 */
 
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap");
+
 * {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  font-size: 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 18px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -35,11 +36,15 @@ body {
 
 .landing div {
   width: 50%;
-  margin: 50px;
+  margin: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.intro > p {
+  margin: 10px 0;
 }
 
 #start-btn {
@@ -60,17 +65,15 @@ body {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+/*how to keep color transition going after click is released?? */
 #start-btn:active {
-  animation-name: start-btn-click;
-  animation-duration: 200ms;
-}
-
-#start-btn:active:after {
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: all 200ms;
+  background-color: rgba(255, 255, 255, 0.4);
+  animation-duration: 100ms;
 }
 
 .disclaimer {
+  display: flex;
+  align-items: flex-end;
   justify-self: flex-end;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;

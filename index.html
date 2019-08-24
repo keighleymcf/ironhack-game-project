@@ -10,8 +10,11 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- <script src="constants.js"></script> -->
-    <!-- <script src="main.js"></script> -->
+    <script src="constants.js"></script>
+    <script src="ball.js"></script>
+    <script src="game.js"></script>
+    <script src="main.js"></script>
+    <!-- when main.js is linked, alignment shifts and the landing div takes up only ca 80% and is justified left ?! -->
     <div class="landing">
       <h1>Peace Pal (working title)</h1>
       <div class="intro">
@@ -23,11 +26,13 @@
           This game takes you through the steps of visualizing pain as an
           external object.
         </p>
-        <!-- onclick="setTimeout(start(), 1000)" -->
-        <!-- start button not aligning correctly -->
-        <div id="start-btn">
+        <!-- no delay for onclick -->
+        <div id="start-btn" onclick="setTimeout(start(), 1000)">
           start
         </div>
+      </div>
+      <div class="links">
+        Add github etc. links here laterrrr
       </div>
       <div class="disclaimer">
         <h3>Disclaimer</h3>
@@ -38,5 +43,6 @@
         <p>In an emergency, contact emergency assistance.</p>
       </div>
     </div>
+    <div class="canvas"></div>
   </body>
 </html>
