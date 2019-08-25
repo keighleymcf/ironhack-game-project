@@ -8,7 +8,6 @@ function preload() {
 function setup() {
   createCanvas(WIDTH, HEIGHT);
   background(color(255, 255, 255));
-  //   canvas.parent("canvas"); /*Alignment?? */
   game.setup();
 }
 
