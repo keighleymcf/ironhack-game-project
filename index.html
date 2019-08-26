@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Peace Pal (Working Title)</title>
-    <script src="p5/p5.js"></script>
-    <script src="p5/p5.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <script src="constants.js"></script>
+    <!-- <script src="constants.js"></script>
     <script src="ball.js"></script>
     <script src="game.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js"></script> -->
     <!-- when main.js is linked, alignment shifts and the landing div takes up only ca 80% and is justified left ?! -->
     <div class="landing">
       <h1>Peace Pal (working title)</h1>
@@ -26,10 +24,11 @@
           This game takes you through the steps of visualizing pain as an
           external object.
         </p>
-        <!-- no delay for onclick -->
-        <div id="start-btn" onclick="setTimeout(start(), 1000)">
-          start
-        </div>
+        <a href="./game.html">
+          <div id="start-btn">
+            start
+          </div>
+        </a>
       </div>
       <div class="links">
         Add github etc. links here laterrrr
@@ -43,6 +42,5 @@
         <p>In an emergency, contact emergency assistance.</p>
       </div>
     </div>
-    <div class="canvas"></div>
   </body>
 </html>
