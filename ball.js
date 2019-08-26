@@ -1,50 +1,63 @@
 class Ball {
   constructor() {
     this.ball;
-    this.ballSize = ballSize;
-    this.instruction = ballSizeInstructions;
     this.level = 0;
+    this.ballSize = ballSize;
+    this.ballColor;
+    this.instruction = ballSizeInstructions;
     //this.ballColor = ballColor;
   }
 
   setup() {
     textAlign(CENTER, CENTER);
     textSize(28);
+    this.ballColor = color(239, 242, 245);
   }
 
   draw() {
     // add gradient "glowing" border later? or make gradient in background
-    fill(color(239, 242, 245));
+    fill(this.ballColor);
     //noStroke();
-    this.sizeBall();
+
+    this.ball = circle(WIDTH / 2, HEIGHT / 2, ballSize);
+
+    if (this.level === 0) {
+      this.sizeBall();
+    } else if (this.level === 1) {
+      this.colorBall();
+    }
+    //else if (this.level === 1) {
+    //  this.colorBall();
+    //}
   }
 
   showInstructions(instructionText) {
     push();
-    fill("red");
+    fill("white");
     text(instructionText, instructionX, instructionY);
     pop();
   }
 
-  createButton(input) {
+  createBtn(input) {
     // add fill matching styling of landing page start button
-    push();
-    strokeWeight(3);
-    stroke(102, 103, 134);
-    rect(buttonX, buttonY, buttonWidth, buttonHeight, 10);
-    noStroke();
-    fill("red");
-    text(input, btnTextX, btnTextY);
-    pop();
+    let btn = createButton(input);
+    btn.size(buttonWidth, buttonHeight);
+    //btn.parent(".canvasContainer");
+    btn.position(buttonX, buttonY);
+    btn.style("background-color", "white");
+    btn.mouseClicked(this.clickBtn);
   }
+
+  clickBtn = () => {
+    this.level++;
+    console.log(this.level);
+  };
 
   // functions for levels
 
   sizeBall() {
     this.showInstructions(ballSizeInstructions);
-
-    this.createButton(ballSizeBtnText);
-    circle(WIDTH / 2, HEIGHT / 2, ballSize);
+    this.createBtn(ballSizeBtnText);
 
     if (
       keyIsDown(32) &&
@@ -59,20 +72,27 @@ class Ball {
       circle(WIDTH / 2, HEIGHT / 2, (ballSize -= 5));
       console.log("down");
     }
-    // click button to set size and move on to color picker
   }
 
+  colorBall() {
+    this.showInstructions(ballColorInstructions);
+    this.createBtn(ballColorBtnText);
+    this.colorPicker();
+
+    // colorPicker = <input class="jscolor" value="ab2567">;
+  }
+
+  colorPicker() {
+    let colorPicker = createColorPicker(color("white"));
+    colorPicker.position(pickerX, pickerY);
+
+    colorPicker.input(() => {
+      this.ballColor = colorPicker.color();
+      console.log(this.ballColor);
+      fill(this.ballColor);
+      circle(WIDTH / 2, HEIGHT / 2, ballSize);
+    });
+  }
   //let sizeSetComplete = false
   //function clickSizeSetCompleteBtn() {
 }
-
-/* ADD FUNCTION LATER to reduce size of ball!!
-    else if (keyIsDown(40)) {
-      //down arrow
-      fill(color(255, 255, 255));
-      strokeWeight(2);
-      stroke(color(23, 45, 6));
-      circle(WIDTH / 2, HEIGHT / 2, (ballSize += 5));
-      ballSize -= 5;
-      console.log("down");
-    } */

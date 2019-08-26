@@ -8,24 +8,13 @@ function preload() {
 
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT);
+  // canvas.parent(".canvasContainer");
   // canvas.parent("canvasContainer"); // append canvas here? would be nice to have margin so canvas isnt stuck at top
   newBall.setup();
 }
 
 function draw() {
   clear();
-  background(color("black"));
+  background(color("rgba(0, 0, 0, 0.5)"));
   newBall.draw();
 }
-
-// function start() {
-//   setTimeout(function() {
-//     const landing = document.querySelector(".landing");
-//     landing.style.visibility = "hidden";
-//     started = true;
-//     loop();
-//     console.log(started);
-//     // const canvasContainer = document.querySelector(".canvasContainer");
-//     // canvasContainer.style.visibility = "visible";
-//   }, 1000);
-// }
