@@ -17,3 +17,20 @@ function draw() {
   background(color("rgba(0, 0, 0, 0.5)"));
   newBall.draw();
 }
+
+function mousePressed() {
+  // Did I click on the rectangle?
+  if (newBall.rollover) {
+    newBall.dragging = true;
+    console.log("dragging------");
+    // If so, keep track of relative location of click to corner of rectangle
+    // offsetX = x-mouseX;
+    // offsetY = y-mouseY;
+  }
+}
+
+function mouseReleased() {
+  // Quit dragging
+  newBall.dragging = false;
+  console.log("release");
+}

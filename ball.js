@@ -34,7 +34,8 @@ class Ball {
     noStroke();
     ambientLight(80);
     directionalLight(255, 255, 255, 200, 200, -300);
-    //translate(this.ballX, this.ballY);
+    this.moveBall();
+    translate(this.ballX, this.ballY);
     this.ball = sphere(this.ballSize, 64, 64);
     // if (
     //   mouseX > ballLeftEdge &&
@@ -46,7 +47,6 @@ class Ball {
     // } else {
     //   console.log("no");
     // }
-    this.moveBall();
 
     //activate functionalities
     if (this.level === 0) {
@@ -78,7 +78,6 @@ class Ball {
 
   clickBtn = () => {
     this.level++;
-    console.log(this.level);
   };
 
   // functions for levels
@@ -145,34 +144,19 @@ class Ball {
     } else {
       this.rollover = false;
     }
-    console.log("rollover", this.rollover);
-    console.log("draggin", this.dragging);
 
     // Adjust location if being dragged
     if (this.dragging) {
       this.ballX = mouseX - WIDTH / 2;
-      this.ballY = mouseY - WIDTH / 2;
-      this.ball.translate(this.ballX, this.ballY);
+      this.ballY = mouseY - 325;
+      this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
+      this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
+      this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
+      this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
+      //this.ball.translate(this.ballX, this.ballY);
     }
   }
 
   // set surface texture
   // p5 shininess()
-}
-
-function mousePressed() {
-  // Did I click on the rectangle?
-  if (this.rollover) {
-    this.dragging = true;
-    console.log("dragging");
-    // If so, keep track of relative location of click to corner of rectangle
-    // offsetX = x-mouseX;
-    // offsetY = y-mouseY;
-  }
-}
-
-function mouseReleased() {
-  // Quit dragging
-  this.dragging = false;
-  console.log("release");
 }
