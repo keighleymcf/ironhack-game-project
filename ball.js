@@ -7,6 +7,10 @@ class Ball {
     this.ballY = ballY;
     this.ballColor;
     this.ballWeight = 1;
+    this.gravity = 0.8;
+    this.velocity = 0;
+    this.originalY = this.ballY;
+
     this.instruction = ballSizeInstructions;
     this.rollover = false;
     this.dragging = false;
@@ -29,42 +33,41 @@ class Ball {
   draw() {
     // add gradient "glowing" border later? or make gradient in background
 
-    // create ball
+    // create moveable ball
     fill(this.ballColor);
     noStroke();
     ambientLight(80);
     directionalLight(255, 255, 255, 200, 200, -300);
     this.moveBall();
+    // this.weightBall();
+    if (this.ballY > this.originalY) {
+      this.ballY = this.originalY;
+    } else {
+      this.velocity += this.gravity; // add gravity force to velocity
+      this.ballY += this.velocity;
+    }
+    console.log(this.velocity);
+
     translate(this.ballX, this.ballY);
     this.ball = sphere(this.ballSize, 64, 64);
-    // if (
-    //   mouseX > ballLeftEdge &&
-    //   mouseX < ballRightEdge &&
-    //   mouseY > ballBottomEdge &&
-    //   mouseY < ballTopEdge
-    // ) {
-    //   console.log("YES", ballBottomEdge);
-    // } else {
-    //   console.log("no");
-    // }
 
-    //activate functionalities
+    //activate functionalities based on level
     if (this.level === 0) {
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
     } else if (this.level === 2) {
-      this.weightBall();
+      //this.weightBall();
     }
   }
 
-  // Instructions and button
-  showInstructions(instructionText) {
+  // Instructions and button FIX INSTRUCTIONS
+  /*showInstructions(instructionText) {
     push();
     fill("white");
     text(instructionText, instructionX, instructionY);
     pop();
-  }
+  }*/
 
   createBtn(input) {
     // add fill matching styling of landing page start button
@@ -82,9 +85,9 @@ class Ball {
 
   // functions for levels
 
-  // set size
+  // 0 set size
   sizeBall() {
-    this.showInstructions(ballSizeInstructions);
+    // this.showInstructions(ballSizeInstructions);
     this.createBtn(ballSizeBtnText);
 
     if (keyIsDown(38) && this.ballSize <= HEIGHT * 0.4) {
@@ -96,9 +99,9 @@ class Ball {
     }
   }
 
-  // set color
+  // 1 set color
   colorBall() {
-    this.showInstructions(ballColorInstructions);
+    // this.showInstructions(ballColorInstructions);
     this.createBtn(ballColorBtnText);
     this.colorPicker();
   }
@@ -113,27 +116,33 @@ class Ball {
     });
   }
 
-  // set weight
+  // 2 set weight
 
-  weightBall() {
-    this.showInstructions(ballWeightInstructions);
+  weightBall = () => {
+    // this.showInstructions(ballWeightInstructions);
     this.createBtn(ballWeightBtnText);
-    // if mousePressed() {
-    //   this.ball.position = (mouseX, mouseY);
-    // }
     // this.weightSlider();
-  }
 
+    // if (keyCode === 32) {
+    //   // space
+    //   if (this.ballY > this.originalY) {
+    //     this.ballY = this.originalY;
+    //   }
+    //   this.velocity = -8;
+    //   // this.velocity += this.gravity; // add gravity force to velocity
+    //   // this.ballY += this.velocity; // add velocity to y
+    // }
+  };
+  /*
   weightSlider() {
     let slider = createSlider(0, 255, 100);
     slider.position(100, 100);
     slider.style("width", "80px");
-  }
+  }*/
 
   //drag and place ball with mouse
   moveBall() {
-    //var x, y, w, h;          // Location and size
-    // var offsetX, offsetY;
+    // ensure mouse is over ball (see coordinates in constructor function)
     if (
       mouseX > this.ballLeftEdge &&
       mouseX < this.ballRightEdge &&
@@ -148,12 +157,11 @@ class Ball {
     // Adjust location if being dragged
     if (this.dragging) {
       this.ballX = mouseX - WIDTH / 2;
-      this.ballY = mouseY - 325;
+      this.ballY = mouseY - halfHeight; // There were problems recognizing the value of WIDTH/2, so saved it in a variable
       this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
       this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
       this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
       this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
-      //this.ball.translate(this.ballX, this.ballY);
     }
   }
 

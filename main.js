@@ -18,19 +18,23 @@ function draw() {
   newBall.draw();
 }
 
+// mouse press functions need to be located in main.js to avoid problems with drawing
 function mousePressed() {
-  // Did I click on the rectangle?
-  if (newBall.rollover) {
+  if (/*newBall.level === 3 && */ newBall.rollover) {
     newBall.dragging = true;
-    console.log("dragging------");
-    // If so, keep track of relative location of click to corner of rectangle
-    // offsetX = x-mouseX;
-    // offsetY = y-mouseY;
   }
 }
 
 function mouseReleased() {
   // Quit dragging
   newBall.dragging = false;
-  console.log("release");
+}
+
+function keyPressed() {
+  if (keyCode === 32) {
+    newBall.velocity = -8;
+
+    newBall.velocity += newBall.gravity; // add gravity force to velocity
+    newBall.ballY += newBall.velocity;
+  }
 }
