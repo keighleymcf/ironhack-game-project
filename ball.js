@@ -3,10 +3,18 @@ class Ball {
     this.ball;
     this.level = 0;
     this.ballSize = ballSize;
+    this.ballX = ballX;
+    this.ballY = ballY;
     this.ballColor;
     this.ballWeight = 1;
     this.instruction = ballSizeInstructions;
+    this.rollover = false;
+    this.dragging = false;
     //this.ballColor = ballColor;
+    this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
+    this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
+    this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
+    this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
   }
 
   setup() {
@@ -14,17 +22,33 @@ class Ball {
     textSize(28);
     this.ballColor = color(239, 242, 245);
     //  this.weightSlider();
+
+    //ball coordinates
   }
 
   draw() {
     // add gradient "glowing" border later? or make gradient in background
+
+    // create ball
     fill(this.ballColor);
     noStroke();
     ambientLight(80);
     directionalLight(255, 255, 255, 200, 200, -300);
+    //translate(this.ballX, this.ballY);
+    this.ball = sphere(this.ballSize, 64, 64);
+    // if (
+    //   mouseX > ballLeftEdge &&
+    //   mouseX < ballRightEdge &&
+    //   mouseY > ballBottomEdge &&
+    //   mouseY < ballTopEdge
+    // ) {
+    //   console.log("YES", ballBottomEdge);
+    // } else {
+    //   console.log("no");
+    // }
+    this.moveBall();
 
-    this.ball = sphere(ballSize, 64, 64);
-
+    //activate functionalities
     if (this.level === 0) {
       this.sizeBall();
     } else if (this.level === 1) {
@@ -34,6 +58,7 @@ class Ball {
     }
   }
 
+  // Instructions and button
   showInstructions(instructionText) {
     push();
     fill("white");
@@ -63,12 +88,12 @@ class Ball {
     this.showInstructions(ballSizeInstructions);
     this.createBtn(ballSizeBtnText);
 
-    if (keyIsDown(38) && ballSize <= HEIGHT * 0.4) {
+    if (keyIsDown(38) && this.ballSize <= HEIGHT * 0.4) {
       // up arrow
-      ballSize += 3;
-    } else if (keyIsDown(40) && ballSize >= HEIGHT * 0.05) {
+      this.ballSize += 3;
+    } else if (keyIsDown(40) && this.ballSize >= HEIGHT * 0.05) {
       //down arrow
-      ballSize -= 3;
+      this.ballSize -= 3;
     }
   }
 
@@ -106,6 +131,48 @@ class Ball {
     slider.style("width", "80px");
   }
 
+  //drag and place ball with mouse
+  moveBall() {
+    //var x, y, w, h;          // Location and size
+    // var offsetX, offsetY;
+    if (
+      mouseX > this.ballLeftEdge &&
+      mouseX < this.ballRightEdge &&
+      mouseY > this.ballBottomEdge &&
+      mouseY < this.ballTopEdge
+    ) {
+      this.rollover = true;
+    } else {
+      this.rollover = false;
+    }
+    console.log("rollover", this.rollover);
+    console.log("draggin", this.dragging);
+
+    // Adjust location if being dragged
+    if (this.dragging) {
+      this.ballX = mouseX - WIDTH / 2;
+      this.ballY = mouseY - WIDTH / 2;
+      this.ball.translate(this.ballX, this.ballY);
+    }
+  }
+
   // set surface texture
   // p5 shininess()
+}
+
+function mousePressed() {
+  // Did I click on the rectangle?
+  if (this.rollover) {
+    this.dragging = true;
+    console.log("dragging");
+    // If so, keep track of relative location of click to corner of rectangle
+    // offsetX = x-mouseX;
+    // offsetY = y-mouseY;
+  }
+}
+
+function mouseReleased() {
+  // Quit dragging
+  this.dragging = false;
+  console.log("release");
 }
