@@ -25,9 +25,11 @@ let instructionY = HEIGHT * 0.1;
 
 // instruction texts
 let ballSizeInstructions =
-  "Press the space bar to increase the object's size. \nPress the down arrow to decrease its size.";
+  "Press the up arrow to increase the object's size. \nPress the down arrow to decrease its size.";
 let ballColorInstructions =
   "Choose the object's color using the picker on the left";
+let ballWeightInstructions =
+  "Set the object's weight using the slider. \nDrag the object with the mouse to position it, \nand press space to drop it.";
 
 //button dimensions
 let buttonHeight = 80;
@@ -38,6 +40,7 @@ let buttonY = HEIGHT * 0.85;
 //button texts
 let ballSizeBtnText = "Set the object's size";
 let ballColorBtnText = "Set the object's color";
+let ballWeightBtnText = "Set the object's weight";
 
 // color picker
 let pickerX = WIDTH * 0.3;

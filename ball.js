@@ -4,6 +4,7 @@ class Ball {
     this.level = 0;
     this.ballSize = ballSize;
     this.ballColor;
+    this.ballWeight = 1;
     this.instruction = ballSizeInstructions;
     //this.ballColor = ballColor;
   }
@@ -12,23 +13,25 @@ class Ball {
     textAlign(CENTER, CENTER);
     textSize(28);
     this.ballColor = color(239, 242, 245);
+    //  this.weightSlider();
   }
 
   draw() {
     // add gradient "glowing" border later? or make gradient in background
     fill(this.ballColor);
-    //noStroke();
+    noStroke();
+    ambientLight(80);
+    directionalLight(255, 255, 255, 200, 200, -300);
 
-    this.ball = circle(WIDTH / 2, HEIGHT / 2, ballSize);
+    this.ball = sphere(ballSize, 64, 64);
 
     if (this.level === 0) {
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
+    } else if (this.level === 2) {
+      this.weightBall();
     }
-    //else if (this.level === 1) {
-    //  this.colorBall();
-    //}
   }
 
   showInstructions(instructionText) {
@@ -55,31 +58,25 @@ class Ball {
 
   // functions for levels
 
+  // set size
   sizeBall() {
     this.showInstructions(ballSizeInstructions);
     this.createBtn(ballSizeBtnText);
 
-    if (
-      keyIsDown(32) &&
-      ballSize <= HEIGHT * 0.6 /*&& sizeSetComplete === false*/
-    ) {
-      // space bar
-      circle(WIDTH / 2, HEIGHT / 2, (ballSize += 5));
-      console.log("space");
+    if (keyIsDown(38) && ballSize <= HEIGHT * 0.4) {
+      // up arrow
+      ballSize += 3;
     } else if (keyIsDown(40) && ballSize >= HEIGHT * 0.05) {
       //down arrow
-      // need to clear old circles
-      circle(WIDTH / 2, HEIGHT / 2, (ballSize -= 5));
-      console.log("down");
+      ballSize -= 3;
     }
   }
 
+  // set color
   colorBall() {
     this.showInstructions(ballColorInstructions);
     this.createBtn(ballColorBtnText);
     this.colorPicker();
-
-    // colorPicker = <input class="jscolor" value="ab2567">;
   }
 
   colorPicker() {
@@ -88,11 +85,27 @@ class Ball {
 
     colorPicker.input(() => {
       this.ballColor = colorPicker.color();
-      console.log(this.ballColor);
       fill(this.ballColor);
-      circle(WIDTH / 2, HEIGHT / 2, ballSize);
     });
   }
-  //let sizeSetComplete = false
-  //function clickSizeSetCompleteBtn() {
+
+  // set weight
+
+  weightBall() {
+    this.showInstructions(ballWeightInstructions);
+    this.createBtn(ballWeightBtnText);
+    // if mousePressed() {
+    //   this.ball.position = (mouseX, mouseY);
+    // }
+    // this.weightSlider();
+  }
+
+  weightSlider() {
+    let slider = createSlider(0, 255, 100);
+    slider.position(100, 100);
+    slider.style("width", "80px");
+  }
+
+  // set surface texture
+  // p5 shininess()
 }
