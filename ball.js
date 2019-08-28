@@ -51,7 +51,7 @@ class Ball {
 
     //activate functionalities based on level
     if (this.level === 0) {
-      showInstructions(ballSizeInstructions);
+      // showInstructions(ballSizeInstructions);
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
@@ -82,7 +82,7 @@ class Ball {
 
   // 1 set color
   colorBall() {
-    showInstructions(ballColorInstructions);
+    //showInstructions(ballColorInstructions);
     // this.createBtn(ballColorBtnText);
     this.colorPicker();
   }
@@ -99,7 +99,7 @@ class Ball {
 
   // 2 set physics and set weight
   weightBall = () => {
-    showInstructions(ballWeightInstructions);
+    //showInstructions(ballWeightInstructions);
     // this.createBtn(ballWeightBtnText);
 
     this.gravity = sliderGravity;
@@ -108,6 +108,7 @@ class Ball {
 
     if (this.ballY > this.originalY) {
       this.ballY = this.originalY;
+
       this.jumpCount = 0;
     }
   };
@@ -121,7 +122,7 @@ class Ball {
 
   // 3 disappear ball
   disappearBall() {
-    showInstructions(ballDisappearInstructions);
+    //showInstructions(ballDisappearInstructions);
 
     if (this.ballDisappearActive === true) {
       this.ballZ -= 0.4 - this.ballZ * 0.035;

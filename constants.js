@@ -39,7 +39,7 @@ let ballWeightInstructions =
 let ballDisappearInstructions =
   "When you are ready, double click to send the ball away.";
 
-function showInstructions(instructionText) {
+function showInstructTTTTions(instructionText) {
   push();
   noStroke();
   fill("white");

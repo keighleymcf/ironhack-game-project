@@ -68,6 +68,12 @@ a {
   text-decoration: none;
 }
 
+#instruction-container {
+  height: 200px;
+  color: white;
+  font-size: 2rem;
+}
+
 #canvasContainer {
   width: 1100;
   display: flex;
