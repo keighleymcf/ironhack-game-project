@@ -15,6 +15,7 @@ white
 let WIDTH = 1100;
 let HEIGHT = 650;
 let halfHeight = HEIGHT / 2;
+let halfWidth = WIDTH / 2;
 
 // ball characteristics
 let ballSize = 10;

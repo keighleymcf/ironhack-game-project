@@ -10,10 +10,17 @@ function preload() {
 
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT, WEBGL);
-  // canvas.parent(".canvasContainer"); // append canvas here? would be nice to have margin so canvas isnt stuck at top
+  canvas.parent("canvasContainer"); // append canvas here? would be nice to have margin so canvas isnt stuck at top
   textFont(font);
-
   newBall.setup();
+  /*
+  let btn = createButton("Go to the next step");
+  btn.size(buttonWidth, buttonHeight);
+  btn.parent("canvasContainer");
+  btn.position(buttonX, buttonY);
+  btn.style("background-color", "white");
+  //btn.style("position", )
+  btn.mouseClicked(clickBtn());*/
 }
 
 function draw() {
@@ -26,9 +33,13 @@ function draw() {
 function mousePressed() {
   if (/*newBall.level === 3 && */ newBall.rollover) {
     newBall.dragging = true;
-    console.log("drag");
   }
 }
+
+// function clickBtn() {
+//   newBall.level++;
+//   console.log(newBall.level);
+// };
 
 function mouseReleased() {
   // Quit dragging
@@ -52,7 +63,6 @@ function keyPressed() {
   if (keyCode === 32) {
     // space
     newBall.jump();
-    console.log("space main");
   }
   if (keyCode === 78) {
     // n key
