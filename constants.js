@@ -14,12 +14,13 @@ white
 // canvas dimensions
 let WIDTH = 1100;
 let HEIGHT = 650;
-let halfHeight = HEIGHT/2
+let halfHeight = HEIGHT / 2;
 
 // ball characteristics
 let ballSize = 10;
 let ballX = 0;
 let ballY = 0;
+let ballZ = 0;
 // let ballLeftEdge = ballX - ballSize + WIDTH / 2;
 // let ballRightEdge = ballX + ballSize + WIDTH / 2;
 // let ballBottomEdge = ballY - ballSize + HEIGHT / 2;

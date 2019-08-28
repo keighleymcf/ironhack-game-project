@@ -5,7 +5,9 @@ class Ball {
     this.ballSize = ballSize;
     this.ballX = ballX;
     this.ballY = ballY;
+    this.ballZ = ballZ;
     this.ballColor;
+    this.ambientLight = 80;
     this.ballWeight = 1;
     this.gravity = 0.8;
     this.velocity = 0;
@@ -19,6 +21,7 @@ class Ball {
     this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
     this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
     this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
+    this.ballDisappearActive = false;
   }
 
   setup() {
@@ -36,19 +39,18 @@ class Ball {
     // create moveable ball
     fill(this.ballColor);
     noStroke();
-    ambientLight(80);
+    ambientLight(this.ambientLight);
     directionalLight(255, 255, 255, 200, 200, -300);
     this.moveBall();
     // this.weightBall();
-    if (this.ballY > this.originalY) {
+    /*if (this.ballY > this.originalY) {
       this.ballY = this.originalY;
     } else {
       this.velocity += this.gravity; // add gravity force to velocity
       this.ballY += this.velocity;
-    }
-    console.log(this.velocity);
-
-    translate(this.ballX, this.ballY);
+    }*/
+    this.disappearBall();
+    translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
 
     //activate functionalities based on level
@@ -165,6 +167,24 @@ class Ball {
     }
   }
 
-  // set surface texture
-  // p5 shininess()
+  disappearBall() {
+    if (this.ballDisappearActive === true) {
+      this.ballZ -= 0.4 - this.ballZ * 0.035;
+      this.ballX += 0.2 + this.ballX * 0.035 /*pow(this.ballX, 0.3)*/;
+      this.ballY -= 0.2 - this.ballY * 0.035;
+      //this.ambientLight -= 2;
+      // fix lighting if time
+    }
+  }
 }
+/*
+if (this.ballDisappearActive === true) {
+  if (this.ballSize >= 15) {
+    this.ballSize -= 1.5 - this.ballY * 0.01;
+    this.ballX += 1 + this.ballX * 0.035;
+    this.ballY -= 1 - this.ballY * 0.035;
+  } else if (this.ballSize >= 0) {
+    this.ballSize -= 0.1 - this.ballY * 0.01;
+    this.ballX += 0.3 + this.ballX * 0.035;
+    this.ballY -= 0.3 - this.ballY * 0.035;
+  }*/

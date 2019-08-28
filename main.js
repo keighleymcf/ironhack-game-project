@@ -33,8 +33,10 @@ function mouseReleased() {
 function keyPressed() {
   if (keyCode === 32) {
     newBall.velocity = -8;
-
-    newBall.velocity += newBall.gravity; // add gravity force to velocity
-    newBall.ballY += newBall.velocity;
   }
+}
+
+function doubleClicked() {
+  newBall.ballDisappearActive = true;
+  console.log(newBall.ballDisappearActive);
 }
