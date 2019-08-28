@@ -101,7 +101,8 @@ class Ball {
   weightBall = () => {
     showInstructions(ballWeightInstructions);
     // this.createBtn(ballWeightBtnText);
-    // this.weightSlider();
+
+    this.gravity = sliderGravity;
     this.velocity += this.gravity;
     this.ballY += this.velocity;
 
@@ -117,12 +118,6 @@ class Ball {
       this.jumpCount++;
     }
   }
-  /*
-  weightSlider() {
-    let slider = createSlider(0, 255, 100);
-    slider.position(100, 100);
-    slider.style("width", "80px");
-  }*/
 
   // 3 disappear ball
   disappearBall() {

@@ -1,7 +1,8 @@
 // var started = false;
 
+var slider;
+var sliderGravity;
 let newBall = new Ball();
-
 let font;
 
 function preload() {
@@ -13,6 +14,10 @@ function setup() {
   canvas.parent("canvasContainer"); // append canvas here? would be nice to have margin so canvas isnt stuck at top
   textFont(font);
   newBall.setup();
+  slider = createSlider(1, 9, 0.2);
+  slider.position(100, 100);
+  slider.style("width", "80px");
+
   /*
   let btn = createButton("Go to the next step");
   btn.size(buttonWidth, buttonHeight);
@@ -26,6 +31,7 @@ function setup() {
 function draw() {
   clear();
   background(color("rgba(0, 0, 0, 0.5)"));
+  sliderGravity = slider.value() * 0.1;
   newBall.draw();
 }
 
