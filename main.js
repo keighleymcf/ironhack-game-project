@@ -1,14 +1,15 @@
 // var started = false;
 const newBall = new Ball();
-let font; // import google font??
+let font;
 
 function preload() {
-  //font = loadFont("https://fonts.googleapis.com/css?family=Lato:400,400i,700,700i&display=swap");
+  font = loadFont("assets/font/Lato/Lato-Regular.ttf");
 }
 
 function setup() {
   let canvas = createCanvas(WIDTH, HEIGHT, WEBGL);
   // canvas.parent(".canvasContainer"); // append canvas here? would be nice to have margin so canvas isnt stuck at top
+  textFont(font);
   newBall.setup();
 }
 
@@ -31,12 +32,13 @@ function mouseReleased() {
 }
 
 function keyPressed() {
+  // bounce ball to experience "weight"
   if (keyCode === 32) {
     newBall.velocity = -8;
   }
 }
 
 function doubleClicked() {
+  // send ball away
   newBall.ballDisappearActive = true;
-  console.log(newBall.ballDisappearActive);
 }

@@ -28,10 +28,6 @@ let ballZ = 0;
 
 // let ballColor = color(239, 242, 245); // color function not recognized
 
-//instruction dimensions
-let instructionX = WIDTH / 2;
-let instructionY = HEIGHT * 0.1;
-
 // instruction texts
 let ballSizeInstructions =
   "Press the up arrow to increase the object's size. \nPress the down arrow to decrease its size.";
@@ -39,6 +35,8 @@ let ballColorInstructions =
   "Choose the object's color using the picker on the left";
 let ballWeightInstructions =
   "Set the object's weight using the slider. \nDrag the object with the mouse to position it, \nand press space to drop it.";
+let ballDisappearInstructions =
+  "When you are ready, double click to send the ball away.";
 
 //button dimensions
 let buttonHeight = 80;
@@ -50,6 +48,7 @@ let buttonY = HEIGHT * 0.85;
 let ballSizeBtnText = "Set the object's size";
 let ballColorBtnText = "Set the object's color";
 let ballWeightBtnText = "Set the object's weight";
+let startOverBtnText = "Start a new visualisation";
 
 // color picker
 let pickerX = WIDTH * 0.3;

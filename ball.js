@@ -14,19 +14,19 @@ class Ball {
     this.originalY = this.ballY;
 
     this.instruction = ballSizeInstructions;
-    this.rollover = false;
-    this.dragging = false;
-    //this.ballColor = ballColor;
     this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
     this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
     this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
     this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
+
+    this.rollover = false;
+    this.dragging = false;
     this.ballDisappearActive = false;
   }
 
   setup() {
     textAlign(CENTER, CENTER);
-    textSize(28);
+    textSize(32);
     this.ballColor = color(239, 242, 245);
     //  this.weightSlider();
 
@@ -49,7 +49,6 @@ class Ball {
       this.velocity += this.gravity; // add gravity force to velocity
       this.ballY += this.velocity;
     }*/
-    this.disappearBall();
     translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
 
@@ -58,18 +57,21 @@ class Ball {
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
-    } else if (this.level === 2) {
-      //this.weightBall();
+    } //else if (this.level === 2) {
+    //this.weightBall(); }
+    else if (this.level === 2) {
+      this.disappearBall();
     }
   }
 
   // Instructions and button FIX INSTRUCTIONS
-  /*showInstructions(instructionText) {
+  showInstructions(instructionText) {
     push();
+    noStroke();
     fill("white");
-    text(instructionText, instructionX, instructionY);
+    text(instructionText, 0, -250);
     pop();
-  }*/
+  }
 
   createBtn(input) {
     // add fill matching styling of landing page start button
@@ -89,7 +91,7 @@ class Ball {
 
   // 0 set size
   sizeBall() {
-    // this.showInstructions(ballSizeInstructions);
+    this.showInstructions(ballSizeInstructions);
     this.createBtn(ballSizeBtnText);
 
     if (keyIsDown(38) && this.ballSize <= HEIGHT * 0.4) {
@@ -103,7 +105,7 @@ class Ball {
 
   // 1 set color
   colorBall() {
-    // this.showInstructions(ballColorInstructions);
+    this.showInstructions(ballColorInstructions);
     this.createBtn(ballColorBtnText);
     this.colorPicker();
   }
@@ -167,16 +169,24 @@ class Ball {
     }
   }
 
+  // 3 disappear ball
   disappearBall() {
+    this.showInstructions(ballDisappearInstructions);
+
     if (this.ballDisappearActive === true) {
       this.ballZ -= 0.4 - this.ballZ * 0.035;
       this.ballX += 0.2 + this.ballX * 0.035 /*pow(this.ballX, 0.3)*/;
       this.ballY -= 0.2 - this.ballY * 0.035;
+
+      setTimeout(this.createBtn(startOverBtnText), 5000);
+
       //this.ambientLight -= 2;
       // fix lighting if time
     }
   }
 }
+
+// alternative disappear funciton by changing ballsize
 /*
 if (this.ballDisappearActive === true) {
   if (this.ballSize >= 15) {
