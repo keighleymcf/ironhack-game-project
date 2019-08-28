@@ -69,9 +69,10 @@ a {
 }
 
 #instruction-container {
-  height: 200px;
+  height: 600px;
+  margin: 100px;
   color: white;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 #canvasContainer {

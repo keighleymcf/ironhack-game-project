@@ -56,7 +56,7 @@ function mouseReleased() {
 function keyPressed() {
   // bounce ball to experience "weight"
   if (keyCode === 32) {
-    newBall.velocity = -8;
+    newBall.jump();
   }
 }
 

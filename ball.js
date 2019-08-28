@@ -32,6 +32,7 @@ class Ball {
     //  this.weightSlider();
     this.ballY = ballY;
     this.originalY = this.ballY;
+    this.apex = 0;
 
     //ball coordinates
   }
@@ -46,6 +47,7 @@ class Ball {
     directionalLight(255, 255, 255, 200, 200, -300);
     //this.moveBall();
     this.weightBall();
+    this.disappearBall();
     translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
 
@@ -107,16 +109,31 @@ class Ball {
     this.ballY += this.velocity;
 
     if (this.ballY > this.originalY) {
+      console.log("called");
       this.ballY = this.originalY;
-
+      this.velocity = -this.apex;
+      this.apex /= 1.5;
+      // this.apex /= 1.5;
+      // if (this.jumpCount === 1) {
+      //   this.jump();
+      // }
       this.jumpCount = 0;
     }
   };
 
   jump() {
     if (this.jumpCount < 1) {
-      this.velocity = -6;
-      this.jumpCount++;
+      this.velocity = -8;
+      this.apex = 6;
+      // this.velocity = -this.apex;
+      // this.apex /= 1.5;
+      // if (this.ballY === this.originalY) {
+      //   this.velocity = -this.apex;
+      //   this.apex /= 1.5;
+      // }
+
+      // this.jumping = true;
+      // this.jumpCount++;
     }
   }
 
