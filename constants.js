@@ -38,6 +38,14 @@ let ballWeightInstructions =
 let ballDisappearInstructions =
   "When you are ready, double click to send the ball away.";
 
+function showInstructions(instructionText) {
+  push();
+  noStroke();
+  fill("white");
+  text(instructionText, 0, -250);
+  pop();
+}
+
 //button dimensions
 let buttonHeight = 80;
 let buttonWidth = 400;

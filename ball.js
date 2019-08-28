@@ -4,14 +4,15 @@ class Ball {
     this.level = 0;
     this.ballSize = ballSize;
     this.ballX = ballX;
-    this.ballY = ballY;
+    // this.ballY = ballY;
     this.ballZ = ballZ;
     this.ballColor;
     this.ambientLight = 80;
     this.ballWeight = 1;
-    this.gravity = 0.8;
+    this.gravity = 0.2;
     this.velocity = 0;
-    this.originalY = this.ballY;
+    this.jumpCount = 0;
+    // this.originalY = this.ballY;
 
     this.instruction = ballSizeInstructions;
     this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
@@ -29,6 +30,8 @@ class Ball {
     textSize(32);
     this.ballColor = color(239, 242, 245);
     //  this.weightSlider();
+    this.ballY = ballY;
+    this.originalY = this.ballY;
 
     //ball coordinates
   }
@@ -41,37 +44,25 @@ class Ball {
     noStroke();
     ambientLight(this.ambientLight);
     directionalLight(255, 255, 255, 200, 200, -300);
-    this.moveBall();
-    // this.weightBall();
-    /*if (this.ballY > this.originalY) {
-      this.ballY = this.originalY;
-    } else {
-      this.velocity += this.gravity; // add gravity force to velocity
-      this.ballY += this.velocity;
-    }*/
+    //this.moveBall();
+    this.weightBall();
     translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
 
     //activate functionalities based on level
     if (this.level === 0) {
+      showInstructions(ballSizeInstructions);
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
-    } //else if (this.level === 2) {
-    //this.weightBall(); }
-    else if (this.level === 2) {
+    } else if (this.level === 2) {
+      // this.weightBall();
+    } else if (this.level === 3) {
       this.disappearBall();
     }
   }
 
   // Instructions and button FIX INSTRUCTIONS
-  showInstructions(instructionText) {
-    push();
-    noStroke();
-    fill("white");
-    text(instructionText, 0, -250);
-    pop();
-  }
 
   createBtn(input) {
     // add fill matching styling of landing page start button
@@ -85,13 +76,14 @@ class Ball {
 
   clickBtn = () => {
     this.level++;
+    console.log(this.level);
   };
 
   // functions for levels
 
   // 0 set size
   sizeBall() {
-    this.showInstructions(ballSizeInstructions);
+    //this.showInstructions(ballSizeInstructions);
     this.createBtn(ballSizeBtnText);
 
     if (keyIsDown(38) && this.ballSize <= HEIGHT * 0.4) {
@@ -120,23 +112,26 @@ class Ball {
     });
   }
 
-  // 2 set weight
-
+  // 2 set physics and set weight
   weightBall = () => {
     // this.showInstructions(ballWeightInstructions);
     this.createBtn(ballWeightBtnText);
     // this.weightSlider();
+    this.velocity += this.gravity;
+    this.ballY += this.velocity;
 
-    // if (keyCode === 32) {
-    //   // space
-    //   if (this.ballY > this.originalY) {
-    //     this.ballY = this.originalY;
-    //   }
-    //   this.velocity = -8;
-    //   // this.velocity += this.gravity; // add gravity force to velocity
-    //   // this.ballY += this.velocity; // add velocity to y
-    // }
+    if (this.ballY > this.originalY) {
+      this.ballY = this.originalY;
+      this.jumpCount = 0;
+    }
   };
+
+  jump() {
+    if (this.jumpCount < 1) {
+      this.velocity = -6;
+      this.jumpCount++;
+    }
+  }
   /*
   weightSlider() {
     let slider = createSlider(0, 255, 100);
@@ -145,7 +140,7 @@ class Ball {
   }*/
 
   //drag and place ball with mouse
-  moveBall() {
+  /*moveBall() {
     // ensure mouse is over ball (see coordinates in constructor function)
     if (
       mouseX > this.ballLeftEdge &&
@@ -167,7 +162,7 @@ class Ball {
       this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
       this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
     }
-  }
+  }*/
 
   // 3 disappear ball
   disappearBall() {
@@ -178,7 +173,16 @@ class Ball {
       this.ballX += 0.2 + this.ballX * 0.035 /*pow(this.ballX, 0.3)*/;
       this.ballY -= 0.2 - this.ballY * 0.035;
 
-      setTimeout(this.createBtn(startOverBtnText), 5000);
+      // start over button
+      /*
+      let startOverBtn = createButton(startOverBtnText);
+      startOverBtn.size(buttonWidth, buttonHeight);
+      //btn.parent(".canvasContainer");
+      startOverBtn.position(CENTER, CENTER);
+      startOverBtn.style("background-color", "white");
+      startOverBtn.mouseClicked(resetGame());
+      // setTimeout(this.createBtn(startOverBtnText), 5000);
+      */
 
       //this.ambientLight -= 2;
       // fix lighting if time
