@@ -1,5 +1,3 @@
-// var started = false;
-
 var slider;
 var sliderGravity;
 let newBall = new Ball();
@@ -48,30 +46,18 @@ function setLevel() {
       "#instruction-container"
     ).innerText = ballWeightInstructions;
   } else if (newBall.level === 3) {
+    console.log("level3");
     document.querySelector(
       "#instruction-container"
     ).innerText = ballDisappearInstructions;
   }
 }
 
+
 // change level on click
 function clickBtn() {
   newBall.level++;
-  console.log(newBall.level);
   setLevel();
-}
-// document.querySelector("#game-btn").onclick = clickBtn();
-
-// mouse press functions need to be located in main.js to avoid problems with drawing
-function mousePressed() {
-  if (/*newBall.level === 3 && */ newBall.rollover) {
-    newBall.dragging = true;
-  }
-}
-
-function mouseReleased() {
-  // Quit dragging
-  newBall.dragging = false;
 }
 
 function keyPressed() {
@@ -84,6 +70,7 @@ function keyPressed() {
 function doubleClicked() {
   // send ball away
   newBall.ballDisappearActive = true;
+  console.log("disappear");
 }
 
 function keyPressed() {

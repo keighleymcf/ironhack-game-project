@@ -33,9 +33,9 @@ let ballZ = 0;
 let ballSizeInstructions =
   "Press the up arrow to increase the object's size. \nPress the down arrow to decrease its size.";
 let ballColorInstructions =
-  "Choose the object's color using the picker on the left";
+  "Choose the object's color using the picker on the left.";
 let ballWeightInstructions =
-  "Set the object's weight using the slider. \nDrag the object with the mouse to position it, \nand press space to drop it.";
+  "Set the object's weight using the slider. \nPress space to toss the object up and experience its weight.";
 let ballDisappearInstructions =
   "When you are ready, double click to send the ball away.";
 

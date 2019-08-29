@@ -2,58 +2,44 @@ class Ball {
   constructor() {
     this.ball;
     this.level = 0;
+
+    // ball characteristics
     this.ballSize = ballSize;
-    this.ballX = ballX;
-    // this.ballY = ballY;
-    this.ballZ = ballZ;
     this.ballColor;
     this.ambientLight = 80;
     this.ballWeight = 1;
+    this.ballX = ballX;
+    this.ballZ = ballZ;
+    // Y values defined in setup function because of jumping
+
+    // ball physics
     this.gravity = 0.2;
     this.velocity = 0;
     this.jumpCount = 0;
-    // this.originalY = this.ballY;
 
-    this.instruction = ballSizeInstructions;
-    this.ballLeftEdge = this.ballX - this.ballSize + WIDTH / 2;
-    this.ballRightEdge = this.ballX + this.ballSize + WIDTH / 2;
-    this.ballBottomEdge = this.ballY - this.ballSize + HEIGHT / 2;
-    this.ballTopEdge = this.ballY + this.ballSize + HEIGHT / 2;
-
-    this.rollover = false;
-    this.dragging = false;
+    // activator to send ball away
     this.ballDisappearActive = false;
   }
 
   setup() {
-    textAlign(CENTER, CENTER);
-    textSize(32);
     this.ballColor = color(239, 242, 245);
-    //  this.weightSlider();
+
+    //ball coordinates
     this.ballY = ballY;
     this.originalY = this.ballY;
     this.apex = 0;
-
-    //ball coordinates
   }
 
   draw() {
-    // add gradient "glowing" border later? or make gradient in background
-
-    // create moveable ball
     fill(this.ballColor);
     noStroke();
     ambientLight(this.ambientLight);
     directionalLight(255, 255, 255, 200, 200, -300);
-    //this.moveBall();
-    // this.weightBall();
-    this.disappearBall();
     translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
 
     //activate functionalities based on level
     if (this.level === 0) {
-      // showInstructions(ballSizeInstructions);
       this.sizeBall();
     } else if (this.level === 1) {
       this.colorBall();
@@ -68,9 +54,6 @@ class Ball {
 
   // 0 set size
   sizeBall() {
-    //this.showInstructions(ballSizeInstructions);
-    // this.createBtn(ballSizeBtnText);
-
     if (keyIsDown(38) && this.ballSize <= HEIGHT * 0.4) {
       // up arrow
       this.ballSize += 3;
@@ -82,12 +65,6 @@ class Ball {
 
   // 1 set color
   colorBall() {
-    //showInstructions(ballColorInstructions);
-    // this.createBtn(ballColorBtnText);
-    this.colorPicker();
-  }
-
-  colorPicker() {
     let colorPicker = createColorPicker(color("white"));
     colorPicker.position(pickerX, pickerY);
 
@@ -97,54 +74,35 @@ class Ball {
     });
   }
 
-  // 2 set physics and set weight
+  // 2 set ball weight
   weightBall = () => {
-    //showInstructions(ballWeightInstructions);
-    // this.createBtn(ballWeightBtnText);
-
+    // adjusting ball physics
     this.gravity = sliderGravity;
     this.velocity += this.gravity;
     this.ballY += this.velocity;
 
+    // falling and bouncing
     if (this.ballY > this.originalY) {
       this.ballY = this.originalY;
       this.velocity = -this.apex;
       this.apex /= 1.5;
-      // this.apex /= 1.5;
-      // if (this.jumpCount === 1) {
-      //   this.jump();
-      // }
       this.jumpCount = 0;
     }
   };
-
   jump() {
+    // tossing the ball up
     if (this.jumpCount < 1) {
       this.velocity = -8;
       this.apex = 6;
-      // this.velocity = -this.apex;
-      // this.apex /= 1.5;
-      // if (this.ballY === this.originalY) {
-      //   this.velocity = -this.apex;
-      //   this.apex /= 1.5;
-      // }
-
-      // this.jumping = true;
-      // this.jumpCount++;
     }
   }
 
-  // 3 disappear ball
+  // 3 send ball away
   disappearBall() {
-    //showInstructions(ballDisappearInstructions);
-
     if (this.ballDisappearActive === true) {
       this.ballZ -= 0.4 - this.ballZ * 0.035;
-      this.ballX += 0.2 + this.ballX * 0.035 /*pow(this.ballX, 0.3)*/;
+      this.ballX += 0.2 + this.ballX * 0.035;
       this.ballY -= 0.2 - this.ballY * 0.035;
-
-      //this.ambientLight -= 2;
-      // fix lighting if time
     }
   }
 }

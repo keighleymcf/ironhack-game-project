@@ -13,6 +13,17 @@
       this.rollover = false;
     }
 
+// mouse press functions need to be located in main.js to avoid problems with drawing
+function mousePressed() {
+  if (/*newBall.level === 3 && */ newBall.rollover) {
+    newBall.dragging = true;
+  }
+
+function mouseReleased() {
+  // Quit dragging
+  newBall.dragging = false;
+}
+
     // Adjust location if being dragged
     if (this.dragging) {
       this.ballX = mouseX - WIDTH / 2;
