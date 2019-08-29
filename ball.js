@@ -46,7 +46,7 @@ class Ball {
     ambientLight(this.ambientLight);
     directionalLight(255, 255, 255, 200, 200, -300);
     //this.moveBall();
-    this.weightBall();
+    // this.weightBall();
     this.disappearBall();
     translate(this.ballX, this.ballY, this.ballZ);
     this.ball = sphere(this.ballSize, 64, 64);
@@ -58,13 +58,11 @@ class Ball {
     } else if (this.level === 1) {
       this.colorBall();
     } else if (this.level === 2) {
-      // this.weightBall();
+      this.weightBall();
     } else if (this.level === 3) {
       this.disappearBall();
     }
   }
-
-  // Instructions and button FIX INSTRUCTIONS
 
   // functions for levels
 
@@ -109,7 +107,6 @@ class Ball {
     this.ballY += this.velocity;
 
     if (this.ballY > this.originalY) {
-      console.log("called");
       this.ballY = this.originalY;
       this.velocity = -this.apex;
       this.apex /= 1.5;
