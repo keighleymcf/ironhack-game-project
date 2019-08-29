@@ -30,6 +30,35 @@ a {
   text-decoration: none;
 }
 
+.btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  height: 80px;
+  font-size: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 3px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/*how to keep color transition going after click is released?? */
+.btn:active {
+  background-color: rgba(255, 255, 255, 0.4);
+  animation-duration: 100ms;
+}
+
+@keyframes start-btn-click {
+  100% {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+}
+
 /* Landing page */
 .landing {
   display: flex;
@@ -56,27 +85,8 @@ a {
 }
 
 #start-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  height: 80px;
-  width: 200px;
   font-size: 2rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-}
-
-#start-btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/*how to keep color transition going after click is released?? */
-#start-btn:active {
-  background-color: rgba(255, 255, 255, 0.4);
-  animation-duration: 100ms;
+  width: 200px;
 }
 
 .disclaimer {
@@ -85,12 +95,6 @@ a {
   justify-self: flex-end;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;
-}
-
-@keyframes start-btn-click {
-  100% {
-    background-color: rgba(255, 255, 255, 0.3);
-  }
 }
 
 /*Game page*/
@@ -104,6 +108,7 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   height: 500px;
+  width: 600px;
   align-items: center;
   margin: 0 50px;
 }
@@ -113,19 +118,27 @@ h2 {
   font-size: 1.5rem;
 }
 
+#picker-label {
+  position: absolute;
+  top: 44vh;
+  left: 20vw;
+}
+
+#slider-label {
+  position: absolute;
+  top: 55vh;
+  left: 20vw;
+}
+
 #game-btn {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  height: 80px;
   width: 300px;
   margin: 50px 0;
-  font-size: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
+}
+
+/* text not aligning vertically inside button?! */
+#restart-btn {
+  margin: 50px 0;
+  width: 350px;
 }
 
 #canvasContainer {

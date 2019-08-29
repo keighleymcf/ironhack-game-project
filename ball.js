@@ -65,7 +65,6 @@ class Ball {
 
   // 1 set color
   colorBall() {
-  
     colorPicker.input(() => {
       this.ballColor = colorPicker.color();
       fill(this.ballColor);
