@@ -65,9 +65,7 @@ class Ball {
 
   // 1 set color
   colorBall() {
-    let colorPicker = createColorPicker(color("white"));
-    colorPicker.position(pickerX, pickerY);
-
+  
     colorPicker.input(() => {
       this.ballColor = colorPicker.color();
       fill(this.ballColor);

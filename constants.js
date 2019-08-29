@@ -12,8 +12,8 @@ white
 */
 
 // canvas dimensions
-let WIDTH = 1100;
-let HEIGHT = 650;
+let WIDTH = 600;
+let HEIGHT = 500;
 let halfHeight = HEIGHT / 2;
 let halfWidth = WIDTH / 2;
 
@@ -31,13 +31,13 @@ let ballZ = 0;
 
 // instruction texts
 let ballSizeInstructions =
-  "Press the up arrow to increase the object's size. \nPress the down arrow to decrease its size.";
+  "<h2>How big is the object?</h2>  <p>Press the up arrow to increase the object's size.</p><p>Press the down arrow to decrease its size.</p>";
 let ballColorInstructions =
-  "Choose the object's color using the picker on the left.";
+  "<h2>What color is the object?</h2>  <p>Choose the object's color using the picker on the left.</p>";
 let ballWeightInstructions =
-  "Set the object's weight using the slider. \nPress space to toss the object up and experience its weight.";
+  "<h2>How heavy is the object?</h2>  <p>Set the object's weight using the slider. <p>Press space to toss the object up and experience its weight.</p>";
 let ballDisappearInstructions =
-  "When you are ready, double click to send the ball away.";
+  "<h2>When you are ready, double click to send the ball away.</h2>";
 
 function showInstructTTTTions(instructionText) {
   push();
