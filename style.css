@@ -28,6 +28,9 @@ body {
 a {
   color: white;
   text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .btn {
@@ -36,21 +39,22 @@ a {
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  height: 80px;
+  height: 65px;
   font-size: 1.5rem;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 3px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.2);
+  /* border: 3px solid rgba(255, 255, 255, 0.5); */
   border-radius: 10px;
 }
 
 .btn:hover {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 /*how to keep color transition going after click is released?? */
 .btn:active {
-  background-color: rgba(255, 255, 255, 0.4);
-  animation-duration: 100ms;
+  background-color: rgba(255, 255, 255, 0.5);
+  animation-name: "start-btn-click";
+  animation-duration: 1s;
 }
 
 @keyframes start-btn-click {
@@ -65,36 +69,80 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 80%;
   height: 100%;
-  padding-top: 100px;
-  /* visibility: visible; */
+  padding-top: 10px;
 }
 
-.landing div {
-  width: 50%;
-  margin: 30px;
+.intro-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  text-align: left;
+  margin-bottom: 30px;
 }
 
-.intro > p {
-  margin: 10px 0;
+.intro {
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  width: 400px;
+}
+
+.intro-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+h1 {
+  padding-bottom: 50px;
+}
+
+.intro p {
+  padding: 8px 0;
+  justify-self: flex-start;
 }
 
 #start-btn {
   font-size: 2rem;
   width: 200px;
+  margin: 30px;
+}
+
+.author {
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+}
+
+img {
+  width: 20px;
+  padding: 5px;
 }
 
 .disclaimer {
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
   justify-self: flex-end;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.8rem;
+  padding: 10px;
 }
 
 /*Game page*/
@@ -135,16 +183,7 @@ h2 {
   margin: 50px 0;
 }
 
-/* text not aligning vertically inside button?! */
 #restart-btn {
   margin: 50px 0;
   width: 350px;
-}
-
-#canvasContainer {
-  width: 1100;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }

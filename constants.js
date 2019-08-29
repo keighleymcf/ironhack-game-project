@@ -25,13 +25,13 @@ let ballZ = 0;
 
 // instruction texts
 let ballSizeInstructions =
-  "<h2>How big is the object?</h2>  <p>Press the up arrow to increase the object's size.</p><p>Press the down arrow to decrease its size.</p>";
+  "<h2>How big is the object?</h2>  <p>Press the up arrow key to increase the object's size.</p><p>Press the down arrow key to decrease its size.</p>";
 let ballColorInstructions =
   "<h2>What color is the object?</h2>  <p>Choose the object's color using the picker on the left.</p>";
 let ballWeightInstructions =
-  "<h2>How heavy is the object?</h2>  <p>Set the object's weight using the slider. <p>Press space to toss the object up and experience its weight.</p>";
+  "<h2>How heavy is the object?</h2>  <p>Set the object's weight using the slider. <p>Press space to toss the object up <br> and experience its weight.</p>";
 let ballDisappearInstructions =
-  "<h2>When you are ready, double click to send the ball away.</h2>";
+  "<h2>When you are ready, <br> double click to send the ball away.</h2>";
 
 //button texts
 let ballSizeBtnText = "Set the object's size";
