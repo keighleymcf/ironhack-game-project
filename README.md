@@ -15,7 +15,6 @@ My Trello board contains details of the individual steps of game development: ht
 - mobile friendly version
 - replace size controls with slider
 - "What texture does the ball have" level: shown using sounds or animations when clicking on the ball's surface (e.g. sparks if metallic)
-- figure out a way to hide controls based on the level until they are needed, to improve UI
 
 ## Bonus: code for unused click-and-drag feature
 
