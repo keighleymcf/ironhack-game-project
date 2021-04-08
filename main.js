@@ -1,5 +1,5 @@
-var slider;
-var sliderGravity;
+let slider;
+let sliderGravity;
 let colorPicker;
 let newBall = new Ball();
 let font;
@@ -18,14 +18,18 @@ function setup() {
   newBall.setup();
   setLevel();
 
-  //
+  // create color picker input
   colorPicker = createColorPicker(color("white"));
   colorPicker.position(pickerX, pickerY);
+  colorPicker.style("visibility", "hidden");
 
-  // gravity slider
+  // create gravity slider input
   slider = createSlider(1, 9, 0.2);
   slider.position(sliderX, sliderY);
   slider.style("width", "150px");
+  slider.style("visibility", "hidden");
+
+
   console.log(newBall.level);
 }
 
@@ -45,23 +49,42 @@ function setLevel() {
       "#instruction-container"
     ).innerHTML = ballSizeInstructions;
   } else if (newBall.level === 1) {
+
     // activate color level
     console.log("level1");
+
+    // display color picker input
+    colorPicker.style("visibility", "visible");
+
+
     document.querySelector(
       "#instruction-container"
     ).innerHTML = ballColorInstructions;
     document.querySelector("#picker-label").style.visibility = "visible";
   } else if (newBall.level === 2) {
+
     // activate weight level
     console.log("level2");
+
+    // hide color picker
+    colorPicker.style("visibility", "hidden");
+
+    //show weight slider
+    slider.style("visibility", "visible");
+
     document.querySelector(
       "#instruction-container"
     ).innerHTML = ballWeightInstructions;
     document.querySelector("#slider-label").style.visibility = "visible";
     document.querySelector("#picker-label").style.visibility = "hidden";
   } else if (newBall.level === 3) {
+
     // activate send away level
     console.log("level3");
+
+    // hide weight slider
+    slider.style("display", "none");
+
     document.querySelector(
       "#instruction-container"
     ).innerHTML = ballDisappearInstructions;
