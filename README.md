@@ -1,6 +1,8 @@
 # Peace Pal
 
-Peace Pal is a game that guides users through a pain and anxiety management exercise.
+Peace Pal is a game that guides users through a pain and anxiety management exercise. 
+
+It is my first fully functioning javascript project and was created in 4 days during the Ironhack Web Development bootcamp in 2019.
 
 Play the game at https://keighleymcf.github.io/ironhack-game-project/
 
