@@ -2,6 +2,8 @@
 
 Peace Pal is a game that guides users through a pain and anxiety management exercise.
 
+Play the game at https://keighleymcf.github.io/ironhack-game-project/
+
 Vizualisation can help people who experience pain or anxiety to regain control over their pain.
 This game takes users through the steps of visualizing pain as an external object.
 
